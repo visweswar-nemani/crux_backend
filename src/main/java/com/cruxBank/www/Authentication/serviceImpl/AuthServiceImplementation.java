@@ -1,8 +1,11 @@
 package com.cruxBank.www.Authentication.serviceImpl;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cruxBank.www.Account.DAO.AccountType;
 import com.cruxBank.www.Authentication.DAO.AuthenticationDAO;
 import com.cruxBank.www.Authentication.DAO.AuthenticationData;
 import com.cruxBank.www.Authentication.api.AuthDetails;
@@ -13,6 +16,14 @@ public class AuthServiceImplementation implements AuthenticationImplementation{
 
 	@Autowired
 	AuthenticationDAO authenticationDAO;
+	
+	
+	@PostConstruct
+	public void init() {
+		authenticationDAO.save(new AuthenticationData("visweswar.nemani93@gmail.com","qwerTY",true));
+		
+	}
+
 	
 	@Override
 	public BaseResponse authenticate( AuthDetails authDetails) {
@@ -26,14 +37,16 @@ public class AuthServiceImplementation implements AuthenticationImplementation{
 		
 		AuthenticationData authData = authenticationDAO.findByEmailAndPassword(authDetails.getEmail(), authDetails.getPassword());
 		System.out.println("after login db check  :  "+authData);	
-		if(authData.getEmail()!=null) {
+		if(authData!=null && authData.getEmail()!=null) {
 			response.setStatus("SUCCESS");
 			return  response;
 		}
 		
 		return response;
 	}
-	
+
+
+
 	
 
 }

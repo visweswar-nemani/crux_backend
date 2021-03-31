@@ -107,7 +107,7 @@ public class AccountData {
 
 	@Override
 	public String toString() {
-		return "AccountData [account_id=" + account_id + ", accountType=" + accountType + ", email=" + email
+		return "AccountData [account_id=" + account_id + ", accountType=" + accountType.getName() + ", email=" + email
 				+ ", balance=" + balance + ", updateTime=" + updateTime + ", createdTime=" + createdTime
 				+ ", updatedBy=" + updatedBy + "]";
 	}

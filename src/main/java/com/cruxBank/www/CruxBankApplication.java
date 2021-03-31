@@ -1,10 +1,12 @@
 package com.cruxBank.www;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.cruxBank.www.Utils.RegistrationUtils;
 
+@EnableAutoConfiguration
 @SpringBootApplication
 public class CruxBankApplication {
 

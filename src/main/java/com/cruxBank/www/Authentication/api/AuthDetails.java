@@ -6,6 +6,13 @@ public class AuthDetails {
 	private String password;
 	
 	
+	public AuthDetails(String email, String password) {
+		super();
+		this.email = email;
+		this.password = password;
+	}
+
+
 	public String getEmail() {
 		return email;
 	}

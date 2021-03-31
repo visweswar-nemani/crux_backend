@@ -15,10 +15,11 @@ public interface SignupInfoDAO extends CrudRepository<SignupInfo,Integer> {
 	@SuppressWarnings("unchecked")
 	SignupInfo save (SignupInfo signupInfo);
 	
+	//SignupInfo update(SignupInfo signupInfo);
 	
-	List<SignupInfo> findByEmail(String emailId); 
-	
-	List<SignupInfo> findByMobileNumber(int mobileNumber); 
+	List<SignupInfo> findByMobileNumber(Long mobileNumber);
+
+	List<SignupInfo> findByEmail(String email); 
 	
 	
 	

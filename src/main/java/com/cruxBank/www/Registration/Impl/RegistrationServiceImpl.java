@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.cruxBank.www.Account.DAO.AccountData;
 import com.cruxBank.www.Account.DAO.AccountDataRepository;
 import com.cruxBank.www.Account.DAO.AccountTypeRepository;
@@ -13,8 +14,8 @@ import com.cruxBank.www.Authentication.DAO.AuthenticationData;
 import com.cruxBank.www.Common.BaseResponse;
 import com.cruxBank.www.Messaging.MessagingImplementation;
 import com.cruxBank.www.Messaging.api.MailRequest;
-import com.cruxBank.www.Registration.DAO.SignupInfoDAO;
 import com.cruxBank.www.Registration.DAO.SignupInfo;
+import com.cruxBank.www.Registration.DAO.SignupInfoDAO;
 import com.cruxBank.www.Registration.api.RegistrationRequest;
 import com.cruxBank.www.Utils.RegistrationUtils;
 

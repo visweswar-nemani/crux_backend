@@ -7,7 +7,7 @@ public class RegistrationRequest {
 	private String email;
 	private String city;
 	private String state;
-	private int mobileNumber;
+	private Long mobileNumber;
 	private String address_1;
 	private String address_2;
 	private int zip;
@@ -41,10 +41,11 @@ public class RegistrationRequest {
 	public void setState(String state) {
 		this.state = state;
 	}
-	public int getMobileNumber() {
+
+	public Long getMobileNumber() {
 		return mobileNumber;
 	}
-	public void setMobileNumber(int mobileNumber) {
+	public void setMobileNumber(Long mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 	public String getAddress_1() {

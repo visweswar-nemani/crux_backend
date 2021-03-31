@@ -12,13 +12,14 @@ import com.sun.istack.NotNull;
 @Entity
 public class SignupInfo {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	private int id;
 	@Column(nullable = false,length = 250)
 	private String firstName;
 	@Column(nullable = false,length = 250)
 	private String lastName;
+	@Id
 	@Column(nullable = false,length = 250,unique = true)
 	private String email;
 	@Column(nullable = false,length = 250)
@@ -26,7 +27,7 @@ public class SignupInfo {
 	@Column(nullable = false,length = 250)
 	private String state;
 	@Column(nullable = false,length = 250,unique = true)
-	private int mobileNumber;
+	private Long mobileNumber;
 	@Column(nullable = false,length = 250)
 	private String address_1;
 	@Column(nullable = false,length = 250)
@@ -41,12 +42,9 @@ public class SignupInfo {
 		super();
 	}
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	
+
+
 	public String getEmail() {
 		return email;
 	}
@@ -85,13 +83,14 @@ public class SignupInfo {
 		this.zip = zip;
 	}
 	
-	
-	public int getMobileNumber() {
+	public Long getMobileNumber() {
 		return mobileNumber;
 	}
-	public void setMobileNumber(int mobileNumber) {
+
+	public void setMobileNumber(Long mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
+
 	public String getAddress_1() {
 		return address_1;
 	}
@@ -104,9 +103,11 @@ public class SignupInfo {
 	public void setAddress_2(String address_2) {
 		this.address_2 = address_2;
 	}
+	
+	
 	@Override
 	public String toString() {
-		return "SignupInfo [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+		return "SignupInfo [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ ", city=" + city + ", state=" + state + ", mobileNumber=" + mobileNumber + ", address_1=" + address_1
 				+ ", address_2=" + address_2 + ", zip=" + zip + "]";
 	}

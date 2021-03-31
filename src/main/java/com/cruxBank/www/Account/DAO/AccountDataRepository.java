@@ -1,6 +1,8 @@
 package com.cruxBank.www.Account.DAO;
 
 
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,6 +11,8 @@ public interface AccountDataRepository extends CrudRepository<AccountData, Long>
 	
 	@SuppressWarnings("unchecked")
 	AccountData save (AccountData accountData);
+	
+	List<AccountData> findByEmail(String email); 
 	
 
 }
