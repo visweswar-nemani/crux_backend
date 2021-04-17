@@ -1,7 +1,11 @@
 package com.cruxBank.www.Registration.Impl;
 
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +42,15 @@ public class RegistrationServiceImpl implements RegistrationImpl {
 	
 	@Autowired
 	AccountDataRepository accountDataRepository;
+	
+	@PostConstruct
+	public void init() {
+		authenticationDAO.save(new AuthenticationData("visweswar.nemani93@gmail.com","qwerty",false));
+		accountDataRepository.save( new AccountData(RegistrationUtils.generateSavingsId(),accountTypeRepository.findById("SAVINGS").get(),"visweswar.nemani93@gmail.com", new BigDecimal(10),new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()),"System" ));
+		accountDataRepository.save( new AccountData(RegistrationUtils.generateCheckingId(),accountTypeRepository.findById("CHECKING").get(),"visweswar.nemani93@gmail.com",new BigDecimal(5),new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()),"System" ));
+		
+		
+	}
 
 	@Override
 	public BaseResponse register(RegistrationRequest registrationRequest) {
@@ -110,7 +123,7 @@ public class RegistrationServiceImpl implements RegistrationImpl {
 		try {
 			System.out.println("the account type is "+accountTypeRepository.findById("SAVINGS").get().getName());
 			//System.out.println("the account data is "+data.toString());
-			accountDataRepository.save( new AccountData(RegistrationUtils.generateSavingsId(),accountTypeRepository.findById("SAVINGS").get(),registrationRequest.getEmail(),(long) 0,LocalDateTime.now(),LocalDateTime.now(),"System" ));
+			accountDataRepository.save( new AccountData(RegistrationUtils.generateSavingsId(),accountTypeRepository.findById("SAVINGS").get(),registrationRequest.getEmail(), new BigDecimal(0),new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()),"System" ));
 			return true;
 		} catch(Exception e ) {
 			e.printStackTrace();
@@ -121,7 +134,7 @@ public class RegistrationServiceImpl implements RegistrationImpl {
 	
 	public boolean createCheckingAccount(RegistrationRequest registrationRequest) {
 		try {			
-			accountDataRepository.save( new AccountData(RegistrationUtils.generateCheckingId(),accountTypeRepository.findById("CHECKING").get(),registrationRequest.getEmail(),(long) 0,LocalDateTime.now(),LocalDateTime.now(),"System" ));
+			accountDataRepository.save( new AccountData(RegistrationUtils.generateCheckingId(),accountTypeRepository.findById("CHECKING").get(),registrationRequest.getEmail(),new BigDecimal(0),new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()),"System" ));
 			return true;
 			
 		}catch(Exception e ) {

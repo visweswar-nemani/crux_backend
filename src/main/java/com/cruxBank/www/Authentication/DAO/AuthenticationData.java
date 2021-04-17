@@ -44,12 +44,21 @@ public class AuthenticationData {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+
+
 	public boolean isPasswordTemporary() {
 		return isPasswordTemporary;
 	}
+
+
+
+
 	public void setPasswordTemporary(boolean isPasswordTemporary) {
 		this.isPasswordTemporary = isPasswordTemporary;
 	}
+
+
 
 
 	@Override

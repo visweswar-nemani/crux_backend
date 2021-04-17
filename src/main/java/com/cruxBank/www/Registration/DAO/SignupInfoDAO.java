@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SignupInfoDAO extends CrudRepository<SignupInfo,Integer> {
+public interface SignupInfoDAO extends CrudRepository<SignupInfo,String> {
 	
 	
 	 
@@ -20,6 +20,8 @@ public interface SignupInfoDAO extends CrudRepository<SignupInfo,Integer> {
 	List<SignupInfo> findByMobileNumber(Long mobileNumber);
 
 	List<SignupInfo> findByEmail(String email); 
+	
+	
 	
 	
 	
