@@ -43,6 +43,8 @@ public class AccountController {
 		return accountServiceImpl.updateProfileData(signupInfoDto);
 	}
 	
+	
+	
 
 
 }

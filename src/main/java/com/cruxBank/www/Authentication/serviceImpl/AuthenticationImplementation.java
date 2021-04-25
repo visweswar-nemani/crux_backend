@@ -11,5 +11,7 @@ public interface AuthenticationImplementation {
 	public BaseResponse chanagePassword(PasswordChangeRequest request);
 	
 	public boolean forceChangePassword(String email);
+	
+	public BaseResponse forgotPassword(String email);
 
 }

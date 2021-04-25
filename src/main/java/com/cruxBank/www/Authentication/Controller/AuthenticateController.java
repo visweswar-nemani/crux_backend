@@ -29,7 +29,7 @@ public class AuthenticateController {
 	
 	@CrossOrigin
 	@PostMapping("/changePassword")
-	public BaseResponse changePassword(@ RequestBody PasswordChangeRequest request) {
+	public BaseResponse changePassword(@RequestBody PasswordChangeRequest request) {
 		return authenticationImplementation.chanagePassword(request);
 	}
 	
@@ -37,6 +37,12 @@ public class AuthenticateController {
 	@GetMapping("/forceChangePassword")
 	public boolean forceChangePassword(@RequestParam String email) {
 		return authenticationImplementation.forceChangePassword(email);
+	}
+	
+	@CrossOrigin
+	@GetMapping("/forgotPassword")
+	public BaseResponse forgotPassword(@RequestParam String email) {
+		return authenticationImplementation.forgotPassword(email);
 	}
 
 	

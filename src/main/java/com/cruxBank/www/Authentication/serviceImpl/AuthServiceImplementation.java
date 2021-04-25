@@ -13,6 +13,10 @@ import com.cruxBank.www.Authentication.DAO.AuthenticationData;
 import com.cruxBank.www.Authentication.api.AuthDetails;
 import com.cruxBank.www.Authentication.api.PasswordChangeRequest;
 import com.cruxBank.www.Common.BaseResponse;
+import com.cruxBank.www.Common.Constants;
+import com.cruxBank.www.Messaging.MessagingImplementation;
+import com.cruxBank.www.Messaging.api.MailRequest;
+import com.cruxBank.www.Utils.RegistrationUtils;
 
 @Service
 public class AuthServiceImplementation implements AuthenticationImplementation{
@@ -20,7 +24,8 @@ public class AuthServiceImplementation implements AuthenticationImplementation{
 	@Autowired
 	AuthenticationDAO authenticationDAO;
 	
-	
+	@Autowired
+	MessagingImplementation messagingImplementation;
 	
 
 	
@@ -89,6 +94,37 @@ public class AuthServiceImplementation implements AuthenticationImplementation{
 		return false;
 	}
 
+
+	@Override
+	public BaseResponse forgotPassword(String email) {
+		BaseResponse response = new BaseResponse();
+		response.setStatus(Constants.ResponseStatus.FAILURE.toString());
+		System.out.println(" the email ID received for forgotPassword request "+email);
+		String new_temp_password =  RegistrationUtils.generateOneTimePassword();
+		try {
+			if(authenticationDAO.findById(email).isPresent()) {				
+				AuthenticationData res = authenticationDAO.save(new AuthenticationData(email,new_temp_password,true));
+				System.out.println(" the updated authData "+res);
+				sendTemporaryPasswordToUser(email,new_temp_password);
+				response.setStatus(Constants.ResponseStatus.SUCCESS.toString());
+				response.setErrorDescription("An email with OTP has been sent to your mailId");
+			}else {
+				response.setErrorDescription("Email does not exist");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			response.setErrorDescription("Error while updating password");
+		}
+		return response;
+	}
+
+	public void sendTemporaryPasswordToUser(String email, String password ) {
+		MailRequest mailRequest  = new MailRequest();
+		mailRequest.setMailTo(email);		
+		mailRequest.setSubject("OTP from Crux Bank");
+		mailRequest.setBody("Please use this temporary password to login. \n One Time Password: "+password +"\n"+" You might need to change your password once logged in.");
+		messagingImplementation.sendMail(mailRequest);		
+	}
 	
 
 

@@ -6,5 +6,7 @@ public interface MessagingImplementation {
 	
 	public void sendMail(MailRequest request);
 	
+	public void sendMailWithAttachment(MailRequest request);
+	
 
 }

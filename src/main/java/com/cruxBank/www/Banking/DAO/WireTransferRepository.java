@@ -15,20 +15,24 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface WireTransferRepository extends JpaRepository<WireTransfer, Long> {
 	
+		
+		@SuppressWarnings("unchecked")
+		WireTransfer save(WireTransfer request);
+		
+	    @Override
+	    Optional<WireTransfer> findById(Long id) ;
 	
-	@SuppressWarnings("unchecked")
-	WireTransfer save(WireTransfer request);
 	
-   @Override
-   Optional<WireTransfer> findById(Long id) ;
-
-
-	
-	@Transactional
-	@Modifying(clearAutomatically = true,flushAutomatically = true)
-	@Query("update WireTransfer wt set wt.status=:status,wt.updatedTime=:updatedTime where wt.referenceId=:referenceId ")
-	void updateTransferStatus(@Param(value="referenceId")Long referenceId,@Param(value="status")String status,@Param(value="updatedTime")Timestamp updatedTime);
-	
+		
+		@Transactional
+		@Modifying(clearAutomatically = true,flushAutomatically = true)
+		@Query("update WireTransfer wt set wt.status=:status,wt.updatedTime=:updatedTime where wt.referenceId=:referenceId ")
+		void updateTransferStatus(@Param(value="referenceId")Long referenceId,@Param(value="status")String status,@Param(value="updatedTime")Timestamp updatedTime);
+		
+		
+		
+		
+		
 		
 
 }

@@ -30,25 +30,6 @@ public class CruxBankApplication {
 	
 		SpringApplication.run(CruxBankApplication.class, args);
 		
-		RegistrationUtils.generateSavingsId();
-		RegistrationUtils.generateCheckingId();
-		
-		//System.out.println("testing uuid "+UUID.randomUUID());
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmssS");
-		
-		MersenneTwister mt = new MersenneTwister();
-		
-		System.out.println(LocalDateTime.now().format(formatter)+String.valueOf((int)(100+mt.nextDouble()*100)));
-		
-		DecimalFormat  df = new DecimalFormat("0.00");
-		double d =12.345;
-		System.out.println("the roundup value is "+df.format(d));
-		
-		
-		System.out.println("Big decimalvalue is "+new BigDecimal(d).setScale(2, RoundingMode.HALF_EVEN).doubleValue());
-		
-		
-		
 	}
 
 }

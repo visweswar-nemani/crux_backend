@@ -84,7 +84,8 @@ public class RegistrationServiceImpl implements RegistrationImpl {
 		
 		
 		System.out.println("Before sending email : "+LocalDateTime.now().toString());
-		//Need to implement AMQ for sending email
+		//Need to implement AMQ for sending email . 
+		//need to handle if mail was not sent
 		sendTemporaryPasswordToUser(authData.getEmail(),authData.getPassword());
 		System.out.println("After sending email : "+LocalDateTime.now().toString());
 		baseResponse.setStatus("Success");
@@ -107,14 +108,11 @@ public class RegistrationServiceImpl implements RegistrationImpl {
 		return signupInfo;
 	}
 	
-	
-	
 	public void sendTemporaryPasswordToUser(String email, String password ) {
 		MailRequest mailRequest  = new MailRequest();
-		mailRequest.setMailTo(email);
-		
+		mailRequest.setMailTo(email);		
 		mailRequest.setSubject("Welcome to Crux Bank ");
-		mailRequest.setBody("please use this temporary password to login. \n One Time Password: "+password);
+		mailRequest.setBody("Please use this temporary password to login. \n One Time Password: "+password +"\n"+" You might need to change your password once logged in.");
 		messagingImplementation.sendMail(mailRequest);		
 	}
 	
@@ -123,7 +121,7 @@ public class RegistrationServiceImpl implements RegistrationImpl {
 		try {
 			System.out.println("the account type is "+accountTypeRepository.findById("SAVINGS").get().getName());
 			//System.out.println("the account data is "+data.toString());
-			accountDataRepository.save( new AccountData(RegistrationUtils.generateSavingsId(),accountTypeRepository.findById("SAVINGS").get(),registrationRequest.getEmail(), new BigDecimal(0),new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()),"System" ));
+			accountDataRepository.save( new AccountData(RegistrationUtils.generateSavingsId(),accountTypeRepository.findById("SAVINGS").get(),registrationRequest.getEmail(), new BigDecimal(10),new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()),"System" ));
 			return true;
 		} catch(Exception e ) {
 			e.printStackTrace();
@@ -134,7 +132,7 @@ public class RegistrationServiceImpl implements RegistrationImpl {
 	
 	public boolean createCheckingAccount(RegistrationRequest registrationRequest) {
 		try {			
-			accountDataRepository.save( new AccountData(RegistrationUtils.generateCheckingId(),accountTypeRepository.findById("CHECKING").get(),registrationRequest.getEmail(),new BigDecimal(0),new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()),"System" ));
+			accountDataRepository.save( new AccountData(RegistrationUtils.generateCheckingId(),accountTypeRepository.findById("CHECKING").get(),registrationRequest.getEmail(),new BigDecimal(10),new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()),"System" ));
 			return true;
 			
 		}catch(Exception e ) {

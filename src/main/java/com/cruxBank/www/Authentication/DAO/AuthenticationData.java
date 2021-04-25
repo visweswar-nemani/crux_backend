@@ -63,7 +63,8 @@ public class AuthenticationData {
 
 	@Override
 	public String toString() {
-		return "AuthenticationData [email=" + email + ", isPasswordTemporary=" + isPasswordTemporary + "]";
+		return "AuthenticationData [email=" + email + ", password=" + password + ", isPasswordTemporary="
+				+ isPasswordTemporary + "]";
 	}
 
 }

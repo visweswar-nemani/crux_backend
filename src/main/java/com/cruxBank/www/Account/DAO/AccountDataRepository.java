@@ -36,7 +36,8 @@ public interface AccountDataRepository extends CrudRepository<AccountData, Long>
 	public void creditAmount(@Param(value = "account_id")Long account_id,@Param(value = "balance")BigDecimal balance,@Param(value = "updateTime")Timestamp updateTime);
 	
 	
-	
+	@Query("Select ad.email from AccountData ad where ad.account_id=:Id")
+	String findEmailByAccountId (Long Id);
 	
 
 }

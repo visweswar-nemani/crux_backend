@@ -3,6 +3,7 @@ package com.cruxBank.www.Account.DAO;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
+import org.springframework.stereotype.Component;
 
 import com.cruxBank.www.Account.api.SignupInfoDto;
 import com.cruxBank.www.Registration.DAO.SignupInfo;
