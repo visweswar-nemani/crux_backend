@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cruxBank.www.Account.DAO.AccountData;
+import com.cruxBank.www.Account.Implementation.AccountImplementation;
 import com.cruxBank.www.Account.Implementation.AccountServiceImpl;
 import com.cruxBank.www.Account.api.AccountDataResponse;
 import com.cruxBank.www.Account.api.SignupInfoDto;
@@ -23,7 +24,7 @@ import com.cruxBank.www.Registration.DAO.SignupInfo;
 public class AccountController {
 	
 	@Autowired
-	AccountServiceImpl accountServiceImpl;
+	AccountImplementation accountServiceImpl;
 	
 	@CrossOrigin
 	@GetMapping("/getAccountData" )

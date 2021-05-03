@@ -59,37 +59,28 @@ public class RegistrationServiceImpl implements RegistrationImpl {
 		
 		List<SignupInfo> isEmailExisted = signupInfoDAO.findByEmail(registrationRequest.getEmail());
 		List<SignupInfo> isMobileNumberExisted = signupInfoDAO.findByMobileNumber(registrationRequest.getMobileNumber());
-		if( isEmailExisted.size() >0 ) {
-			
+		if( isEmailExisted.size() >0 ) {			
 			baseResponse.setErrorDescription("Email already Exists");
 			return baseResponse;
-		} 
-		
+		} 		
 		if( isMobileNumberExisted.size() >0 ) {
 			baseResponse.setErrorDescription("MobileNumber already Exists");
-			return baseResponse;
-			
-		}
-		
+			return baseResponse;			
+		}		
 		SignupInfo result = signupInfoDAO.save(generateSignupInfoRequest(registrationRequest));
-		System.out.println("New user Saved  :"+result);
-		
-		
+		System.out.println("New user Saved  :"+result);		
 		AuthenticationData authData = new AuthenticationData(registrationRequest.getEmail(),RegistrationUtils.generateOneTimePassword(),true);
 		authData = authenticationDAO.save(authData);
 		if(!createSavingsAccount(registrationRequest) || !createCheckingAccount(registrationRequest)) {
 			baseResponse.setErrorDescription("Error while creating account");
 			return baseResponse;
-		}
-		
-		
+		}		
 		System.out.println("Before sending email : "+LocalDateTime.now().toString());
 		//Need to implement AMQ for sending email . 
 		//need to handle if mail was not sent
 		sendTemporaryPasswordToUser(authData.getEmail(),authData.getPassword());
 		System.out.println("After sending email : "+LocalDateTime.now().toString());
-		baseResponse.setStatus("Success");
-		
+		baseResponse.setStatus("Success");		
 		return baseResponse;
 	}
 	

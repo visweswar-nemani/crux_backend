@@ -30,7 +30,7 @@ public class SignupInfo {
 	private Long mobileNumber;
 	@Column(nullable = false,length = 250)
 	private String address_1;
-	@Column(nullable = false,length = 250)
+	@Column(length = 250)
 	private String address_2;
 	@Column(nullable = false,length = 250)
 	private int zip;

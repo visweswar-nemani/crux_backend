@@ -54,14 +54,10 @@ public class AccountServiceImpl implements AccountImplementation{
 		List<AccountDataResponse> response=null;
 		if (email== null || email== "") 
 			return null;
-
 		userAccounts = accountDataRepository.findByEmail(email);
 		System.out.println(" the user accounts are "+userAccounts.toString());
 		response = userAccounts.stream().map( e -> new AccountDataResponse(String.valueOf(e.getAccount_id()), e.getAccountType().getName(),e.getEmail(),RegistrationUtils.roundToTwoDigits(e.getBalance()))).collect(Collectors.toList());
-		System.out.println("the account data response is "+response);				
-		
-
-		
+		System.out.println("the account data response is "+response);	
 		 return (response.size() > 0) ?  response : null;
 	}
 

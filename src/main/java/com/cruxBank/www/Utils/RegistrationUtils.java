@@ -68,8 +68,5 @@ public class RegistrationUtils {
 	public static double convertToDouble(BigDecimal value) {
 		return  value.doubleValue();
 	}
-	
-	
-	
 
 }

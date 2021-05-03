@@ -11,6 +11,28 @@ public class RegistrationRequest {
 	private String address_1;
 	private String address_2;
 	private int zip;
+	
+	
+	public RegistrationRequest(String firstName, String lastName, String email, String city, String state,
+			Long mobileNumber, String address_1, String address_2, int zip) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.city = city;
+		this.state = state;
+		this.mobileNumber = mobileNumber;
+		this.address_1 = address_1;
+		this.address_2 = address_2;
+		this.zip = zip;
+	}
+	
+	
+	public RegistrationRequest() {
+		super();
+	}
+
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -71,8 +93,6 @@ public class RegistrationRequest {
 		return "RegistrationRequest [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", city="
 				+ city + ", state=" + state + ", mobileNumber=" + mobileNumber + ", address_1=" + address_1
 				+ ", address_2=" + address_2 + ", zip=" + zip + "]";
-	}
-	
-	
+	}	
 
 }
